@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import src.main.java.scenes.GameOverScene;
+//import src.main.java.scenes.GameOverScene;
 
 import java.util.Optional;
 //application是抽象类，需要重写start 方法
@@ -26,6 +28,8 @@ public class Main extends Application{
         Label label = new Label("Lust of Lustrous");
         Button buttonNewGame = new Button("Play");
         Button buttonExit = new Button("Exit");
+        Button buttonShowGameOver = new Button("Show Game Over Scene (remove later)"); //Remove and adjust this logic once game logic is finished
+
 //        label style
         label.setLayoutX(200);
         label.setLayoutY(100);
@@ -38,9 +42,11 @@ public class Main extends Application{
         buttonNewGame.setLayoutY(200);
         buttonExit.setLayoutX(225);
         buttonExit.setLayoutY(250);
+        buttonShowGameOver.setLayoutX(225); // Remove Later: You might need to adjust these coordinates
+        buttonShowGameOver.setLayoutY(300); // Remove Later: You might need to adjust these coordinates
 //设置scene，将button全部加入home page
         AnchorPane root = new AnchorPane();
-        root.getChildren().addAll(label,buttonNewGame,buttonExit);
+        root.getChildren().addAll(label,buttonNewGame,buttonExit,buttonShowGameOver); // Remove ShowGameOver Later
         Scene HomePage = new Scene(root,500,500);
 
         // level page
@@ -58,10 +64,14 @@ public class Main extends Application{
         buttonExit.setOnAction(e -> {
             Platform.exit();
         });
+
 //        level page
         buttonBackHome.setOnAction(event -> {
             primaryStage.setScene(HomePage);
         });
+
+//      Remove & adjust after game scene completion: Set the action to show the game over scene
+        buttonShowGameOver.setOnAction(e -> showGameOverScene(primaryStage));
 
 //      处理退出状态
         Platform.setImplicitExit(false);//关闭OS默认退出的动作
@@ -84,5 +94,11 @@ public class Main extends Application{
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    }
+//  Remove Later: method that will be called when 'Show Game Over Scene' is clicked
+    private void showGameOverScene(Stage stage) {
+        GameOverScene gameOver = new GameOverScene(stage); // Make sure to create this class
+        stage.setScene(gameOver.getScene());
+        stage.show();
     }
 }
