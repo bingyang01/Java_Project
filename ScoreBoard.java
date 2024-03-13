@@ -16,6 +16,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 public class ScoreBoard extends Application {
     // 定义一个名为ScoreBoard的类，它继承自JavaFX的Application类，表示这是一个JavaFX应用程序。
 
